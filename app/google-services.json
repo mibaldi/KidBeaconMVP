@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "754344147815",
+    "firebase_url": "https://kidbeaconmvp.firebaseio.com",
+    "project_id": "kidbeaconmvp",
+    "storage_bucket": "kidbeaconmvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754344147815:android:6c3f779340c14f4d",
+        "android_client_info": {
+          "package_name": "com.mibaldi.kidbeaconmvp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754344147815-a8fmpsi4hcqfag8d8e7bsisjb8bi595a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mibaldi.kidbeaconmvp",
+            "certificate_hash": "CBDD44ECA66BDC789A9515EF1778E24F09AF7EC7"
+          }
+        },
+        {
+          "client_id": "754344147815-vulltg5lr2kfum7281lak5p0m652gfu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCMV4sG3l95wPIdDHg8oWYWD0I2XYPhHE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754344147815-vulltg5lr2kfum7281lak5p0m652gfu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
