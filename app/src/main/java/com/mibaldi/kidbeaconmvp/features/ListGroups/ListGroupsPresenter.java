@@ -25,6 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
 import timber.log.Timber;
 
 @PerActivity
@@ -35,6 +36,7 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
 
     private Context context;
     List<OwnGroup> items = new ArrayList<>();
+    private Subscription subscribe;
 
     @Inject
     public ListGroupsPresenter(Navigator navigator) {
@@ -56,8 +58,11 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
     }
 
     public void loadGroupsService() {
+        items.clear();
         getView().swipeRefresh(true);
-        RxFirebaseDatabase.observeValuesList(FirebaseDataSource.refUserGroups, String.class)
+        getView().showDialog(true);
+        String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+         subscribe = RxFirebaseDatabase.observeValuesList(FirebaseDataSource.refUsers.child(uid).child("groups"), String.class)
                 .subscribe(userGroups -> {
                     for (String key : userGroups) {
                         RxFirebaseDatabase.observeSingleValue(FirebaseDataSource.refGroups.child(String.valueOf(key)), OwnGroup.class)
@@ -65,7 +70,8 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
                                     items.add(ownGroup1);
                                     getView().showOwnGroupsList(items);
                                     getView().swipeRefresh(false);
-                                  //  dialog.hide();
+                                    getView().showDialog(false);
+                                    //  dialog.hide();
                                     //adapter.notifyDataSetChanged();
                                     //mSwipeRefreshLayout.setRefreshing(false);
                                 }, throwable -> {
@@ -77,13 +83,22 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
                 }, throwable -> {
                     Log.e("RxFirebaseSample", throwable.toString());
                 });
+
+        if (items.isEmpty()){
+            getView().showDialog(false);
+        }
     }
     public void logOut(){
+        if (!subscribe.isUnsubscribed()){
+            subscribe.unsubscribe();
+        }
         apiClientRepository.signOut(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
                 FirebaseAuth.getInstance().signOut();
+
                 navigator.goToLogin();
+                navigator.finishActivity(context);
             }
         });
     }

@@ -8,6 +8,5 @@ import java.util.List;
 public interface ListGroupsView extends BaseView {
     void showOwnGroupsList(List<OwnGroup> ownGroupList);
     void  swipeRefresh(Boolean b);
-    void showProgressDialog(int message);
-    void cancelProgressDialog();
+    void showDialog(Boolean b);
 }

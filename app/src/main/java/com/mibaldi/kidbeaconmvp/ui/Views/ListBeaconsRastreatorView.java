@@ -9,8 +9,7 @@ import java.util.List;
  * Created by mikelbalducieldiaz on 6/8/16.
  */
 public interface ListBeaconsRastreatorView extends BaseView {
-    void showRecipeList(List<OwnBeacon> recipeList);
-    void  swipeRefresh(Boolean b);
-    void showProgressDialog(int message);
-    void cancelProgressDialog();
+    void showOwnBeaconList(List<OwnBeacon> ownBeaconList);
+    void  showDialog(Boolean b);
+    void showTitle(String ownGroupName);
 }

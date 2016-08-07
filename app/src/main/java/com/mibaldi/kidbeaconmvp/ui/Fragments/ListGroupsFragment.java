@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
@@ -38,7 +40,8 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
+    @BindView(R.id.title)
+    TextView title;
     @Inject
     GroupsListAdapter groupsListAdapter;
     private SpotsDialog dialog;
@@ -59,12 +62,20 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
         loadSwipeRefreshLayout();
         createLoadingDialog();
         presenter.init(getActivity(),getActivity());
+        title.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
         //loadSwipeRefreshLayout();
     }
 
     private void createLoadingDialog() {
         dialog = new SpotsDialog(getActivity(),"Cargando grupos");
-        dialog.show();
+
+    }
+    public void showDialog(Boolean b) {
+        if (b){
+            dialog.show();
+        }else{
+            dialog.hide();
+        }
     }
 
     @Nullable
@@ -108,7 +119,6 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
     @Override
     public void showOwnGroupsList(List<OwnGroup> ownGroupList) {
         this.ownGroupsList = ownGroupList;
-        dialog.hide();
         groupsListAdapter.setDataAndListener(ownGroupsList, new GroupsListAdapter.OnItemClickListener() {
 
             @Override
@@ -124,15 +134,6 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
         mSwipeRefreshLayout.setRefreshing(b);
     }
 
-    @Override
-    public void showProgressDialog(int message) {
-
-    }
-
-    @Override
-    public void cancelProgressDialog() {
-
-    }
     @OnClick(R.id.logout)
     public void logout(){
         presenter.logOut();

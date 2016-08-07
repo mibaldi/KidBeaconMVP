@@ -2,6 +2,7 @@ package com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator;
 
 import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplicationComponent;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
+import com.mibaldi.kidbeaconmvp.ui.Activities.ListBeaconsRastreatorActivity;
 
 import dagger.Component;
 
@@ -9,7 +10,7 @@ import dagger.Component;
 @Component(dependencies = KidBeaconApplicationComponent.class,modules = ListBeaconsRastreatorModule.class)
 public interface ListBeaconsRastreatorComponent {
 
-    //void inject(ListGroupsFragment listGroupsFragment);
+    void inject(ListBeaconsRastreatorActivity listBeaconsRastreatorActivity);
 
     ListBeaconsRastreatorPresenter presenter();
 }

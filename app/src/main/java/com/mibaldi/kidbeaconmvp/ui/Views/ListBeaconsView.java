@@ -11,6 +11,6 @@ import java.util.List;
 public interface ListBeaconsView extends BaseView {
     void showOwnBeaconList(List<OwnBeacon> ownBeaconList);
     void  swipeRefresh(Boolean b);
-    void showProgressDialog(int message);
-    void cancelProgressDialog();
+    void  showDialog(Boolean b);
+
 }

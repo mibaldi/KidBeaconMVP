@@ -53,9 +53,10 @@ public class Navigator {
             context.startActivity(intent);
         }
     }
-    public void goToListBeacons(){
+    public void goToListBeacons(OwnGroup ownGroup){
         if (context != null) {
             Intent intent = ListBeaconsActivity.getCallingIntent(context);
+            intent.putExtra("ownGroup",ownGroup);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
