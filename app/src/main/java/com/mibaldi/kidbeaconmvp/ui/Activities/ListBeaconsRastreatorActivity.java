@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.mibaldi.kidbeaconmvp.Base.BaseMVPActivity;
 import com.mibaldi.kidbeaconmvp.R;
+import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator.DaggerListBeaconsRastreatorComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator.ListBeaconsRastreatorComponent;
@@ -17,6 +18,8 @@ import com.mibaldi.kidbeaconmvp.features.NFC.NfcComponent;
 import com.mibaldi.kidbeaconmvp.features.NFC.NfcPresenter;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsRastreatorView;
 import com.mibaldi.kidbeaconmvp.ui.Views.NfcView;
+
+import java.util.List;
 
 public class ListBeaconsRastreatorActivity extends BaseMVPActivity<ListBeaconsRastreatorPresenter,ListBeaconsRastreatorView> implements ListBeaconsRastreatorView, HasComponent<ListBeaconsRastreatorComponent> {
     private ListBeaconsRastreatorComponent component;
@@ -46,5 +49,25 @@ public class ListBeaconsRastreatorActivity extends BaseMVPActivity<ListBeaconsRa
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context,ListBeaconsRastreatorActivity.class);
+    }
+
+    @Override
+    public void showRecipeList(List<OwnBeacon> recipeList) {
+
+    }
+
+    @Override
+    public void swipeRefresh(Boolean b) {
+
+    }
+
+    @Override
+    public void showProgressDialog(int message) {
+
+    }
+
+    @Override
+    public void cancelProgressDialog() {
+
     }
 }

@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 
 import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
+import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsPresenter;
 import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsComponent;
 import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsPresenter;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsView;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListGroupsView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -60,5 +63,25 @@ public class ListBeaconsFragment extends BaseMVPFragment<ListBeaconsPresenter,Li
     @Override
     public ListBeaconsPresenter createPresenter() {
         return component.presenter();
+    }
+
+    @Override
+    public void showOwnBeaconList(List<OwnBeacon> recipeList) {
+
+    }
+
+    @Override
+    public void swipeRefresh(Boolean b) {
+
+    }
+
+    @Override
+    public void showProgressDialog(int message) {
+
+    }
+
+    @Override
+    public void cancelProgressDialog() {
+
     }
 }

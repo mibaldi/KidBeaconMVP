@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
+import com.mibaldi.kidbeaconmvp.ui.Fragments.ListGroupsFragment;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -18,6 +20,8 @@ public interface KidBeaconApplicationComponent {
     Context context();
 
     void inject (BaseActivity baseActivity);
+
+
     Navigator getNavigator();
     ApiClientRepository apiClientRepository();
 }

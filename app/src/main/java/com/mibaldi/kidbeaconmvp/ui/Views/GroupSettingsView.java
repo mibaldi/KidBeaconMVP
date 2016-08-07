@@ -6,4 +6,6 @@ import com.mibaldi.kidbeaconmvp.Base.BaseView;
  * Created by mikelbalducieldiaz on 6/8/16.
  */
 public interface GroupSettingsView extends BaseView {
+    void showGroupName(String name);
+    void showGroupPhoto(String photo);
 }

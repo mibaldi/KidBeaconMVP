@@ -3,6 +3,7 @@ package com.mibaldi.kidbeaconmvp.Navigation;
 import android.content.Context;
 import android.content.Intent;
 
+import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.ui.Activities.BeaconSettingsActivity;
@@ -85,6 +86,9 @@ public class Navigator {
         }
 
     }
-
-
+    public void finishActivity(Context activityContext){
+        if (activityContext != null) {
+            ((BaseActivity)(activityContext)).finish();
+        }
+    }
 }

@@ -61,4 +61,9 @@ public class GroupSingleFragment extends BaseMVPFragment<GroupSinglePresenter,Gr
     public GroupSinglePresenter createPresenter() {
         return component.presenter();
     }
+
+    @Override
+    public void showGroupName(String name) {
+
+    }
 }

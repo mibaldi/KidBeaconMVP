@@ -4,6 +4,7 @@ package com.mibaldi.kidbeaconmvp.Application;
 import android.content.Context;
 
 import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
 
 import javax.inject.Named;
@@ -29,8 +30,9 @@ public class KidBeaconApplicationModule {
     Navigator providedNavigator(){
         return new Navigator(this.context);
     }
-
     @Provides
     @Singleton
     ApiClientRepository providedApiClientRepository(){return new ApiClientRepository();}
+
+
 }

@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
 import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.interactors.LoginWithGoogleInteractor;
 import com.mibaldi.kidbeaconmvp.ui.Views.LoginFirebaseView;
@@ -49,6 +50,7 @@ public class LoginFirebasePresenter extends BasePresenter<LoginFirebaseView> imp
 
     private FragmentActivity fragmentActivity;
     private FirebaseAuth mAuth;
+    private boolean hasEnter = false;
 
     @Inject
     public LoginFirebasePresenter(Navigator navigator) {
@@ -73,11 +75,13 @@ public class LoginFirebasePresenter extends BasePresenter<LoginFirebaseView> imp
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                if (user != null && !hasEnter) {
+                    hasEnter = true;
                     navigator.openMain();
                     // User is signed in
                     //Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
+                    hasEnter = false;
                     // User is signed out
                     //Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -124,25 +128,7 @@ public class LoginFirebasePresenter extends BasePresenter<LoginFirebaseView> imp
                 else {
                     Timber.d("Hello");
                     final FirebaseUser currentUser = mAuth.getCurrentUser();
-                    final DatabaseReference myRef = database.getReference("Users");
-                    myRef.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (!dataSnapshot.exists()) {
-                                Map<String, String> map = new HashMap<String, String>();
-                                map.put("provider", currentUser.getProviders().get(0));
-                                map.put("name", currentUser.getDisplayName());
-                                map.put("uid", currentUser.getUid());
-                                myRef.child(currentUser.getUid()).setValue(map);
-
-                            }
-
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+                    FirebaseDataSource.generateUser(currentUser);
                 }
             }
         });
