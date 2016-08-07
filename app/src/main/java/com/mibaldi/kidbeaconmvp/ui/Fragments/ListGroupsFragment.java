@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 
 import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
-import com.mibaldi.kidbeaconmvp.features.Main.MainComponent;
-import com.mibaldi.kidbeaconmvp.features.Main.MainPresenter;
-import com.mibaldi.kidbeaconmvp.ui.Views.MainView;
+import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsComponent;
+import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsPresenter;
+import com.mibaldi.kidbeaconmvp.ui.Views.ListGroupsView;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MainFragment extends BaseMVPFragment<MainPresenter,MainView>  implements MainView{
-    private MainComponent component;
+public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter,ListGroupsView>  implements ListGroupsView {
+    private ListGroupsComponent component;
     private Unbinder unbind;
 
     @Inject
-    public MainFragment() {
+    public ListGroupsFragment() {
         setRetainInstance(true);
     }
 
@@ -41,9 +41,9 @@ public class MainFragment extends BaseMVPFragment<MainPresenter,MainView>  imple
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        component = getComponent(MainComponent.class);
+        component = getComponent(ListGroupsComponent.class);
         component.inject(this);
-        View view = inflater.inflate(R.layout.fragment_main,container,false);
+        View view = inflater.inflate(R.layout.fragment_group_list,container,false);
         unbind = ButterKnife.bind(this,view);
         return view;
     }
@@ -55,7 +55,7 @@ public class MainFragment extends BaseMVPFragment<MainPresenter,MainView>  imple
     }
 
     @Override
-    public MainPresenter createPresenter() {
+    public ListGroupsPresenter createPresenter() {
         return component.presenter();
     }
 }

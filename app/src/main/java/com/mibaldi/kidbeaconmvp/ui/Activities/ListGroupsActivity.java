@@ -8,37 +8,37 @@ import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 
-import com.mibaldi.kidbeaconmvp.features.Main.DaggerMainComponent;
-import com.mibaldi.kidbeaconmvp.features.Main.MainComponent;
+import com.mibaldi.kidbeaconmvp.features.ListGroups.DaggerListGroupsComponent;
+import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsComponent;
 
-import com.mibaldi.kidbeaconmvp.ui.Fragments.MainFragment;
+import com.mibaldi.kidbeaconmvp.ui.Fragments.ListGroupsFragment;
 
-public class MainActivity extends BaseActivity implements HasComponent<MainComponent> {
+public class ListGroupsActivity extends BaseActivity implements HasComponent<ListGroupsComponent> {
 
-    private MainComponent mainComponent;
+    private ListGroupsComponent listGroupsComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_groups);
         this.initializeInjector();
         this.initializeActivity();
     }
 
     private void initializeActivity() {
-        addFragment(R.id.content_main,new MainFragment());
+        addFragment(R.id.fl_content,new ListGroupsFragment());
     }
 
     private void initializeInjector() {
-     this.mainComponent = DaggerMainComponent.builder()
+     this.listGroupsComponent = DaggerListGroupsComponent.builder()
                 .kidBeaconApplicationComponent(getInjector())
                 .build();
     }
 
-    public MainComponent getComponent(){
-        return mainComponent;
+    public ListGroupsComponent getComponent(){
+        return listGroupsComponent;
     }
     public static Intent getCallingIntent(Context context){
-        return new Intent(context,MainActivity.class);
+        return new Intent(context,ListGroupsActivity.class);
     }
 }
