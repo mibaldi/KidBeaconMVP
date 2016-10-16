@@ -5,21 +5,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.features.GroupSingle.GroupSingleComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSingle.GroupSinglePresenter;
-import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsComponent;
-import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsPresenter;
 import com.mibaldi.kidbeaconmvp.ui.Views.GroupSingleView;
-import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsView;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -27,8 +22,6 @@ import butterknife.Unbinder;
 public class GroupSingleFragment extends BaseMVPFragment<GroupSinglePresenter,GroupSingleView>  implements GroupSingleView {
     private GroupSingleComponent component;
     private Unbinder unbind;
-    @BindView(R.id.groupName)
-    TextView groupName;
     @Inject
     public GroupSingleFragment() {
         setRetainInstance(true);
@@ -52,7 +45,7 @@ public class GroupSingleFragment extends BaseMVPFragment<GroupSinglePresenter,Gr
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         OwnGroup ownGroup = getArguments().getParcelable("ownGroup");
-        presenter.init(ownGroup);
+        presenter.init();
 
     }
 
@@ -80,7 +73,7 @@ public class GroupSingleFragment extends BaseMVPFragment<GroupSinglePresenter,Gr
 
     @Override
     public void showGroupName(String name) {
-        groupName.setText(name);
+        //groupName.setText(name);
     }
     @OnClick(R.id.beaconList)
     public void goToBeaconList(){

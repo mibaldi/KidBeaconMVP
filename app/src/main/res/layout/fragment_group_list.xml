@@ -3,12 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lista de grupos"
-        android:id="@+id/title"
-        android:layout_alignParentTop="true"/>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,19 +13,11 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add"
         />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/logout"
-        android:layout_below="@+id/title"
-        android:text="Log out"
-        />
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/logout">
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/groupsList"
             android:layout_width="match_parent"

@@ -3,11 +3,10 @@ package com.mibaldi.kidbeaconmvp.ui.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
@@ -15,8 +14,6 @@ import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.BeaconSettings.BeaconSettingsComponent;
 import com.mibaldi.kidbeaconmvp.features.BeaconSettings.BeaconSettingsPresenter;
 import com.mibaldi.kidbeaconmvp.features.BeaconSettings.DaggerBeaconSettingsComponent;
-import com.mibaldi.kidbeaconmvp.features.GroupSettings.GroupSettingsComponent;
-import com.mibaldi.kidbeaconmvp.features.GroupSettings.GroupSettingsPresenter;
 import com.mibaldi.kidbeaconmvp.ui.Views.BeaconSettingsView;
 
 import butterknife.BindView;
@@ -42,9 +39,9 @@ public class BeaconSettingsActivity extends BaseMVPActivity<BeaconSettingsPresen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacon_settings);
         ButterKnife.bind(this);
-        OwnGroup ownGroup = getIntent().getParcelableExtra("ownGroup");
+        //OwnGroup ownGroup = getIntent().getParcelableExtra("ownGroup");
         OwnBeacon ownBeacon = getIntent().getParcelableExtra("ownBeacon");
-        presenter.init(this,ownBeacon,ownGroup);
+        presenter.init(this,ownBeacon);
     }
 
     private void initializeInjector() {

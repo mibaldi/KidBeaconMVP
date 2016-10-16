@@ -2,20 +2,15 @@ package com.mibaldi.kidbeaconmvp.ui.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSingle.DaggerGroupSingleComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSingle.GroupSingleComponent;
-import com.mibaldi.kidbeaconmvp.features.ListBeacons.DaggerListBeaconsComponent;
-import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsComponent;
 import com.mibaldi.kidbeaconmvp.ui.Fragments.GroupSingleFragment;
-import com.mibaldi.kidbeaconmvp.ui.Fragments.ListGroupsFragment;
 
 public class GroupSingleActivity extends BaseActivity implements HasComponent<GroupSingleComponent> {
     private GroupSingleComponent component;

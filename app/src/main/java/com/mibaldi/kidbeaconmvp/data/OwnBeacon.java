@@ -70,8 +70,8 @@ public class OwnBeacon implements Parcelable {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id",id);
         result.put("uuid", uuid);
-        result.put("major", uuid);
-        result.put("minor", uuid);
+        result.put("major", major);
+        result.put("minor", minor);
         result.put("name", name);
         return result;
     }

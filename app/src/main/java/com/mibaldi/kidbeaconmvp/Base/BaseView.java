@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeaconmvp.Base;
+package com.mibaldi.kidbeaconmvp.base;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 

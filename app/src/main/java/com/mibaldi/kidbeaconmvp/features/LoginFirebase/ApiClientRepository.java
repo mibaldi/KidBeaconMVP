@@ -8,7 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.mibaldi.kidbeaconmvp.Constants.FirebaseConstants;
+import com.mibaldi.kidbeaconmvp.constants.FirebaseConstants;
 import com.mibaldi.kidbeaconmvp.R;
 
 
@@ -34,12 +34,12 @@ public class ApiClientRepository {
                 .requestIdToken(fragmentActivity.getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(fragmentActivity)
-                .enableAutoManage(fragmentActivity , listener)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
+        if (mGoogleApiClient == null){
+            mGoogleApiClient = new GoogleApiClient.Builder(fragmentActivity)
+                    .enableAutoManage(fragmentActivity , listener)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
 
     }
 
@@ -53,6 +53,7 @@ public class ApiClientRepository {
     }
 
     public void signOut(ResultCallback<Status> callback) {
+
         if (mGoogleApiClient.isConnected()) {
             Timber.d("conectado se puede desconectar");
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(callback);

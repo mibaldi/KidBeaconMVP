@@ -3,25 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/groupName"
-        />
     <Button
         android:id="@+id/beaconList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lista de beacons" />
+        android:text="Lista de beacons"
+        android:theme="@style/ThemeOverlay.MyDarkButton"/>
     <Button
         android:id="@+id/beaconRastreator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" Rastrear Beacons"/>
+        android:text=" Rastrear Beacons"
+        android:theme="@style/ThemeOverlay.MyDarkButton"/>
     <Button
         android:id="@+id/groupSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Editar Grupo"/>
+        android:text="Editar Grupo"
+        android:visibility="gone"
+        android:theme="@style/ThemeOverlay.MyDarkButton"/>
 
 </LinearLayout>

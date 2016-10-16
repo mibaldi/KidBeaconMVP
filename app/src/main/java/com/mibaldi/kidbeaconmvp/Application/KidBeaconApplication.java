@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeaconmvp.Application;
+package com.mibaldi.kidbeaconmvp.application;
 
 import android.app.Application;
 

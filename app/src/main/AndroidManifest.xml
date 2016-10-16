@@ -3,47 +3,38 @@
     package="com.mibaldi.kidbeaconmvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.nfc" android:required="true"/>
-    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
+
     <application
-        android:name=".Application.KidBeaconApplication"
+        android:name=".application.KidBeaconApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Activities.LoginActivity">
+        <activity android:name=".ui.Activities.GoogleSignInActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Activities.ListGroupsActivity" />
-        <activity android:name=".ui.Activities.BeaconSettingsActivity" />
-        <activity android:name=".ui.Activities.GroupSettingsActivity" />
-        <activity android:name=".ui.Activities.GroupSingleActivity" />
-        <activity android:name=".ui.Activities.ListBeaconsActivity" />
-        <activity android:name=".ui.Activities.ListBeaconsRastreatorActivity" />
-        <activity android:name=".ui.Activities.NfcActivity">
-
-            <meta-data android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT" />
-
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.Activities.ListGroupsActivity" android:screenOrientation="portrait"
+            android:parentActivityName=".ui.Activities.GoogleSignInActivity"/>
+        <activity android:name=".ui.Activities.BeaconSettingsActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activities.GroupSettingsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.Activities.GroupSingleActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.Activities.ListBeaconsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.Activities.ListBeaconsRastreatorActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.Activities.NfcActivity" android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 

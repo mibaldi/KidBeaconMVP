@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeaconmvp.Base;
+package com.mibaldi.kidbeaconmvp.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toolbar;
 
-import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplication;
-import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplicationComponent;
+import com.mibaldi.kidbeaconmvp.application.KidBeaconApplication;
+import com.mibaldi.kidbeaconmvp.application.KidBeaconApplicationComponent;
 
 import butterknife.ButterKnife;
 

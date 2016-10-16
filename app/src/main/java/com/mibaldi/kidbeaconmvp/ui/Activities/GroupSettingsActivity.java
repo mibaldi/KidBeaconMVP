@@ -1,26 +1,23 @@
 package com.mibaldi.kidbeaconmvp.ui.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSettings.DaggerGroupSettingsComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSettings.GroupSettingsComponent;
 import com.mibaldi.kidbeaconmvp.features.GroupSettings.GroupSettingsPresenter;
-import com.mibaldi.kidbeaconmvp.features.LoginFirebase.DaggerLoginFirebaseComponent;
-import com.mibaldi.kidbeaconmvp.features.LoginFirebase.LoginFirebaseComponent;
-import com.mibaldi.kidbeaconmvp.features.LoginFirebase.LoginFirebasePresenter;
-import com.mibaldi.kidbeaconmvp.features.NFC.NfcComponent;
-import com.mibaldi.kidbeaconmvp.features.NFC.NfcPresenter;
 import com.mibaldi.kidbeaconmvp.ui.Views.GroupSettingsView;
-import com.mibaldi.kidbeaconmvp.ui.Views.NfcView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,23 +28,36 @@ public class GroupSettingsActivity extends BaseMVPActivity<GroupSettingsPresente
     private GroupSettingsComponent component;
     @BindView(R.id.groupName)
     EditText groupName;
-    @BindView(R.id.groupPhoto)
-    EditText groupPhoto;
+    @BindView(R.id.btn_save)
+    Button btn_save;
     private Unbinder unbind;
+    private Uri fileUri;
+    private ProgressDialog mProgress;
+    private int mProgressStatus = 0;
+    private boolean stateButton = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.initializeInjector();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_group_settings);
         unbind = ButterKnife.bind(this);
 
-        OwnGroup ownGroup = getIntent().getParcelableExtra("ownGroup");
+        //OwnGroup ownGroup = getIntent().getParcelableExtra("ownGroup");
+        presenter.init(this);
+        mProgress = new ProgressDialog(this);
+        mProgress.setCanceledOnTouchOutside(false);
 
-        presenter.init(this, ownGroup);
-
+        if (savedInstanceState != null) {
+            fileUri = savedInstanceState.getParcelable("URI");
+            stateButton = savedInstanceState.getBoolean("StateButton");
+            //presenter.showPreview(fileUri);
+        }
+       // btn_save.setEnabled(stateButton);
 
     }
+
 
     @Override
     protected void onDestroy() {
@@ -56,11 +66,32 @@ public class GroupSettingsActivity extends BaseMVPActivity<GroupSettingsPresente
     }
 
 
-
     private void initializeInjector() {
         this.component = DaggerGroupSettingsComponent.builder()
                 .kidBeaconApplicationComponent(getInjector())
                 .build();
+    }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 200: {
+                if (resultCode == RESULT_OK) {
+                    stateButton = true;
+                    btn_save.setEnabled(stateButton);
+
+                }
+            }
+        }
+
+    }*/
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("URI", fileUri);
+        outState.putBoolean("StateButton",stateButton);
     }
 
     @NonNull
@@ -82,15 +113,57 @@ public class GroupSettingsActivity extends BaseMVPActivity<GroupSettingsPresente
         groupName.setText(name);
     }
 
+
     @Override
-    public void showGroupPhoto(String photo) {
-        groupPhoto.setText(photo);
+    public void enableSaveButton() {
+        btn_save.setEnabled(true);
     }
+
+    @Override
+    public void paintProgress(long total, long progress) {
+
+        mProgress.setMax((int)total);
+        mProgress.setProgress((int)progress);
+    }
+
+    @Override
+    public void showHideProgressBar(boolean b) {
+        if (b) {
+            mProgress.show();
+            mProgress.onStart();
+        }else {
+            mProgress.hide();
+
+        }
+    }
+
+
+    /*@OnClick(R.id.makePhoto)
+    public void takePhoto() {
+        File file = Utils.createTempFile(this.getCacheDir());
+        fileUri = Utils.getUriFromFile(file);
+        presenter.takePhoto(fileUri);
+    }*/
+
     @OnClick(R.id.btn_save)
-    public void saveGroup(){
-        String name= groupName.getText().toString();
-        String photo = groupPhoto.getText().toString();
-        presenter.addGroup(name,photo);
+    public void saveGroup(Button button) {
+        /*String name = groupName.getText().toString();
+        try {
+            presenter.uploadPhoto(fileUri,name);
+            //presenter.addGroup(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        String name = groupName.getText().toString();
+        if (!name.equals("")){
+            presenter.addGroup(name);
+        }else {
+            Snackbar.make(button,"Campo de nombre vacio",Snackbar.LENGTH_SHORT).show();
+        }
+
+
     }
+
+
 
 }

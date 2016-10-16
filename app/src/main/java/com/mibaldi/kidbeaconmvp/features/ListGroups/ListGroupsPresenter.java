@@ -10,11 +10,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
-import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
-import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
+import com.mibaldi.kidbeaconmvp.base.BasePresenter;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.repositories.GroupsRepository;
+import com.mibaldi.kidbeaconmvp.services.firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
@@ -33,7 +33,8 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
     Navigator navigator;
     @Inject
     ApiClientRepository apiClientRepository;
-
+    @Inject
+    GroupsRepository groupsRepository;
     private Context context;
     List<OwnGroup> items = new ArrayList<>();
     private Subscription subscribe;
@@ -54,6 +55,7 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
         loadGroupsService();
     }
     public void loadOwnGroup(OwnGroup ownGroup) {
+        groupsRepository.setCurrentGroup(ownGroup);
         navigator.goToGroupSingle(ownGroup);
     }
 
@@ -79,7 +81,6 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
                                 });
                     }
 
-
                 }, throwable -> {
                     Log.e("RxFirebaseSample", throwable.toString());
                 });
@@ -87,20 +88,6 @@ public class ListGroupsPresenter extends BasePresenter<ListGroupsView> {
         if (items.isEmpty()){
             getView().showDialog(false);
         }
-    }
-    public void logOut(){
-        if (!subscribe.isUnsubscribed()){
-            subscribe.unsubscribe();
-        }
-        apiClientRepository.signOut(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                FirebaseAuth.getInstance().signOut();
-
-                navigator.goToLogin();
-                navigator.finishActivity(context);
-            }
-        });
     }
     public void goToGroupSettings(OwnGroup ownGroup){
         navigator.goToGroupSettings(ownGroup);

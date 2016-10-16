@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeaconmvp.Base;
+package com.mibaldi.kidbeaconmvp.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

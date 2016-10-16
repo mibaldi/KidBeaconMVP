@@ -1,6 +1,6 @@
 package com.mibaldi.kidbeaconmvp.features.ListGroups;
 
-import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplicationComponent;
+import com.mibaldi.kidbeaconmvp.application.KidBeaconApplicationComponent;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 import com.mibaldi.kidbeaconmvp.ui.Activities.ListGroupsActivity;
 import com.mibaldi.kidbeaconmvp.ui.Fragments.ListGroupsFragment;

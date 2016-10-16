@@ -1,9 +1,12 @@
-package com.mibaldi.kidbeaconmvp.Navigation;
+package com.mibaldi.kidbeaconmvp.navigation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseActivity;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.ui.Activities.BeaconSettingsActivity;
@@ -18,6 +21,7 @@ import com.mibaldi.kidbeaconmvp.ui.Activities.NfcActivity;
 import javax.inject.Inject;
 
 public class Navigator {
+    private static final int CAMERA_CAPTURE = 200;
     Context context;
     @Inject
     public Navigator(Context context){
@@ -40,7 +44,7 @@ public class Navigator {
     public void goToGroupSingle(OwnGroup ownGroup){
         if (context != null) {
             Intent intent = GroupSingleActivity.getCallingIntent(context);
-            intent.putExtra("ownGroup",ownGroup);
+            //intent.putExtra("ownGroup",ownGroup);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
@@ -86,6 +90,14 @@ public class Navigator {
             context.startActivity(intent);
         }
 
+    }
+    public void makePhoto(Activity activity,Uri fileUri){
+        if (context != null){
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
+            activity.startActivityForResult(intent,CAMERA_CAPTURE);
+        }
     }
     public void finishActivity(Context activityContext){
         if (activityContext != null) {

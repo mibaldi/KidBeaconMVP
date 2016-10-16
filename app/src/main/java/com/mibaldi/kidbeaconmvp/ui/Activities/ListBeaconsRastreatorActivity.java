@@ -9,31 +9,22 @@ import android.os.Build;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPActivity;
 import com.mibaldi.kidbeaconmvp.R;
-import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator.DaggerListBeaconsRastreatorComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator.ListBeaconsRastreatorComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator.ListBeaconsRastreatorPresenter;
-import com.mibaldi.kidbeaconmvp.features.NFC.DaggerNfcComponent;
-import com.mibaldi.kidbeaconmvp.features.NFC.NfcComponent;
-import com.mibaldi.kidbeaconmvp.features.NFC.NfcPresenter;
-import com.mibaldi.kidbeaconmvp.ui.Adapters.ListBeaconsAdapter;
 import com.mibaldi.kidbeaconmvp.ui.Adapters.ListBeaconsRastreatorAdapter;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsRastreatorView;
-import com.mibaldi.kidbeaconmvp.ui.Views.NfcView;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -72,13 +63,13 @@ public class ListBeaconsRastreatorActivity extends BaseMVPActivity<ListBeaconsRa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_beacons_rastreator);
         ButterKnife.bind(this);
-        ownGroup = getIntent().getParcelableExtra("ownGroup");
+        //ownGroup = getIntent().getParcelableExtra("ownGroup");
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         createLoadingDialog();
-        presenter.init(ownGroup);
+        presenter.init();
 
         permission_bluetooth();
 

@@ -1,6 +1,5 @@
 package com.mibaldi.kidbeaconmvp.ui.Fragments;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,10 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsComponent;
@@ -40,8 +37,6 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.title)
-    TextView title;
     @Inject
     GroupsListAdapter groupsListAdapter;
     private SpotsDialog dialog;
@@ -62,7 +57,6 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
         loadSwipeRefreshLayout();
         createLoadingDialog();
         presenter.init(getActivity(),getActivity());
-        title.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
         //loadSwipeRefreshLayout();
     }
 
@@ -134,10 +128,6 @@ public class ListGroupsFragment extends BaseMVPFragment<ListGroupsPresenter, Lis
         mSwipeRefreshLayout.setRefreshing(b);
     }
 
-    @OnClick(R.id.logout)
-    public void logout(){
-        presenter.logOut();
-    }
     @OnClick(R.id.addGroup)
     public void addGroup(){
         presenter.goToGroupSettings(null);

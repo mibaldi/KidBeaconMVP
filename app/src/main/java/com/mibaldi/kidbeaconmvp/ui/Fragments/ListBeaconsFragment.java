@@ -1,6 +1,5 @@
 package com.mibaldi.kidbeaconmvp.ui.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,18 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPFragment;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPFragment;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsComponent;
 import com.mibaldi.kidbeaconmvp.features.ListBeacons.ListBeaconsPresenter;
-import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsComponent;
-import com.mibaldi.kidbeaconmvp.features.ListGroups.ListGroupsPresenter;
-import com.mibaldi.kidbeaconmvp.ui.Adapters.GroupsListAdapter;
 import com.mibaldi.kidbeaconmvp.ui.Adapters.ListBeaconsAdapter;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsView;
-import com.mibaldi.kidbeaconmvp.ui.Views.ListGroupsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +66,7 @@ public class ListBeaconsFragment extends BaseMVPFragment<ListBeaconsPresenter,Li
         OwnGroup ownGroup = getArguments().getParcelable("ownGroup");
         loadSwipeRefreshLayout();
         createLoadingDialog();
-        presenter.init(getActivity(),ownGroup);
+        presenter.init(getActivity());
     }
 
     @Nullable

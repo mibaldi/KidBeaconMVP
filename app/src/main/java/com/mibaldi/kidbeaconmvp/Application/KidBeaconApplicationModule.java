@@ -1,11 +1,11 @@
-package com.mibaldi.kidbeaconmvp.Application;
+package com.mibaldi.kidbeaconmvp.application;
 
 
 import android.content.Context;
 
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
-import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
+import com.mibaldi.kidbeaconmvp.repositories.GroupsRepository;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,6 +33,8 @@ public class KidBeaconApplicationModule {
     @Provides
     @Singleton
     ApiClientRepository providedApiClientRepository(){return new ApiClientRepository();}
-
+    @Provides
+    @Singleton
+    GroupsRepository providedGroupsRepository(){return new GroupsRepository();}
 
 }

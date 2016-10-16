@@ -1,4 +1,4 @@
-package com.mibaldi.kidbeaconmvp.Constants;
+package com.mibaldi.kidbeaconmvp.constants;
 
 
 public class ErrorConstants {

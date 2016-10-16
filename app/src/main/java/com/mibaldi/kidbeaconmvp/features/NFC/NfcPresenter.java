@@ -4,11 +4,10 @@ import android.support.v4.app.FragmentActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.base.BasePresenter;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
-import com.mibaldi.kidbeaconmvp.ui.Views.ListGroupsView;
 import com.mibaldi.kidbeaconmvp.ui.Views.NfcView;
 
 import javax.inject.Inject;

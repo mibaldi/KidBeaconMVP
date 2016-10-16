@@ -1,6 +1,6 @@
 package com.mibaldi.kidbeaconmvp.features.LoginFirebase;
 
-import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplicationComponent;
+import com.mibaldi.kidbeaconmvp.application.KidBeaconApplicationComponent;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 
 import dagger.Component;

@@ -14,20 +14,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
-import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
+import com.mibaldi.kidbeaconmvp.base.BasePresenter;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.services.firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.interactors.LoginWithGoogleInteractor;
 import com.mibaldi.kidbeaconmvp.ui.Views.LoginFirebaseView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 

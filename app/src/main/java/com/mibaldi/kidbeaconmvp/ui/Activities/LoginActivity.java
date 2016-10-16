@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 
-import com.mibaldi.kidbeaconmvp.Base.BaseMVPActivity;
+import com.mibaldi.kidbeaconmvp.base.BaseMVPActivity;
 import com.mibaldi.kidbeaconmvp.R;
 import com.mibaldi.kidbeaconmvp.di.HasComponent;
 import com.mibaldi.kidbeaconmvp.features.LoginFirebase.DaggerLoginFirebaseComponent;

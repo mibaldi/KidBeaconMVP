@@ -1,8 +1,7 @@
 package com.mibaldi.kidbeaconmvp.features.NFC;
 
-import com.mibaldi.kidbeaconmvp.Application.KidBeaconApplicationComponent;
+import com.mibaldi.kidbeaconmvp.application.KidBeaconApplicationComponent;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
-import com.mibaldi.kidbeaconmvp.ui.Fragments.ListGroupsFragment;
 
 import dagger.Component;
 

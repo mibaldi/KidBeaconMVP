@@ -1,27 +1,22 @@
 package com.mibaldi.kidbeaconmvp.features.ListBeaconsRastreator;
 
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
-import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
-import com.mibaldi.kidbeaconmvp.Services.Firebase.FirebaseDataSource;
+import com.mibaldi.kidbeaconmvp.base.BasePresenter;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.repositories.GroupsRepository;
+import com.mibaldi.kidbeaconmvp.services.firebase.FirebaseDataSource;
 import com.mibaldi.kidbeaconmvp.data.OwnBeacon;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
-import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
 import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsRastreatorView;
-import com.mibaldi.kidbeaconmvp.ui.Views.NfcView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import timber.log.Timber;
 
 @PerActivity
@@ -30,11 +25,13 @@ public class ListBeaconsRastreatorPresenter extends BasePresenter<ListBeaconsRas
     OwnGroup ownGroup;
     List<OwnBeacon> items = new ArrayList<>();
     @Inject
+    GroupsRepository groupsRepository;
+    @Inject
     public ListBeaconsRastreatorPresenter(Navigator navigator) {
         this.navigator= navigator;
     }
-    public void init(OwnGroup ownGroup) {
-        this.ownGroup = ownGroup;
+    public void init() {
+        this.ownGroup = groupsRepository.getCurrentOwnGroup();
         getView().showTitle(ownGroup.name);
         loadBeaconsService();
 

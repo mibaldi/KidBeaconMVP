@@ -1,14 +1,11 @@
 package com.mibaldi.kidbeaconmvp.features.GroupSingle;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.mibaldi.kidbeaconmvp.Base.BasePresenter;
-import com.mibaldi.kidbeaconmvp.Navigation.Navigator;
+import com.mibaldi.kidbeaconmvp.base.BasePresenter;
+import com.mibaldi.kidbeaconmvp.navigation.Navigator;
 import com.mibaldi.kidbeaconmvp.data.OwnGroup;
 import com.mibaldi.kidbeaconmvp.di.PerActivity;
-import com.mibaldi.kidbeaconmvp.features.LoginFirebase.ApiClientRepository;
+import com.mibaldi.kidbeaconmvp.repositories.GroupsRepository;
 import com.mibaldi.kidbeaconmvp.ui.Views.GroupSingleView;
-import com.mibaldi.kidbeaconmvp.ui.Views.ListBeaconsView;
 
 import javax.inject.Inject;
 
@@ -17,13 +14,15 @@ public class GroupSinglePresenter extends BasePresenter<GroupSingleView> {
     Navigator navigator;
     OwnGroup ownGroup;
     @Inject
+    GroupsRepository groupsRepository;
+    @Inject
     public GroupSinglePresenter(Navigator navigator) {
         this.navigator= navigator;
     }
 
 
-    public void init(OwnGroup ownGroup) {
-        this.ownGroup = ownGroup;
+    public void init() {
+        this.ownGroup = groupsRepository.getCurrentOwnGroup();
         getView().showGroupName(ownGroup.name);
     }
     public void goToListBeacon(){
